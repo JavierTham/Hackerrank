@@ -11,6 +11,22 @@ def inOrder(root):
 
         # strip excess whitespace
         return s.strip()
-        
+
     s = helper(root)
     print(s)
+
+# time complexity for `strip()` is slow 
+
+# method 2
+def inOrder(root):
+    # if node exists
+    if root:
+
+        # go left
+        inOrder(root.left)
+
+        # print mid
+        print(root.info, end = " ") # default `print()` ends with a newline
+
+        # go right
+        inOrder(root.right)

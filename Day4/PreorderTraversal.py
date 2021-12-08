@@ -1,3 +1,4 @@
+# method 1
 def preOrder(root):
     # define helper function to create the string to be printed
     def helper(root):
@@ -16,3 +17,16 @@ def preOrder(root):
 
     # remove extra space at the front
     print(s[1:])
+
+# method 2
+def preOrder(root):
+    # if node exists
+    if root:
+        # print mid
+        print(root.info, end = " ")
+
+        # go left
+        preOrder(root.left)
+
+        # go right
+        preOrder(root.right)
