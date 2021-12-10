@@ -1,21 +1,25 @@
 class Stack:
+    def __init__(self):
+        self.stack = []
     
-    def push(self):
-        pass
+    def push(self, item):
+        self.stack.append(item)
     
     def pop(self):
-        pass
+        self.stack.pop(-1)
             
 class Queue:
+    def __init__(self):
+        self.queue = []
     
-    def enqueue(self):
-        pass
+    def enqueue(self, item):
+        self.queue.append(item)
     
     def dequeue(self):
-        pass
+        self.queue.pop(0)
     
     def print_elem(self):
-        pass
+        print(self.queue[0])
 
 if __name__ == "__main__":
     q = int(input())
@@ -26,7 +30,7 @@ if __name__ == "__main__":
         
         query_type = int(query[0])
         if query_type == 1:
-            x = int(query.split(" ")[0])
+            x = int(query.split(" ")[1])
             queue.enqueue(x)
             
         elif query_type == 2:
