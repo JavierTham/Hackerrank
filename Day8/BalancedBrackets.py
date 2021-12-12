@@ -25,15 +25,23 @@ def isBalanced(s):
         else:
             stack.append(bracket)
 
+    # if stack still has brackets, not all are matched
+    if stack:
+        return "NO"
+        
     # all brackets match        
     return "YES"
 
 if __name__ == '__main__':
     n = int(input())
 
+    ans = ""
+
     for i in range(n):
         s = input()
 
         result = isBalanced(s)
 
-        print(result)
+        ans += result + "\n"
+
+    print(ans)
