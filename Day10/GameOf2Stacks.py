@@ -1,34 +1,50 @@
+# maxSum = 10
+# 5 1 1 1 1 1
+# 1 2 3 4
+#
+# we can't just pick the smallest element each time
+
+
 def twoStacks(maxSum, a, b):
+    # start off by just picking from 1 stack till maxSum
+    max_count = 0
     total = 0
-    count = 0
-    while total < maxSum:
-        # if both stacks are not empty
-        if a and b:
-            # we pick the smaller one
-            if a[0] < b[0]:
-                # if new sum will be more than maxSum, break
-                if total + a[0] > maxSum:
-                    break
 
-                # else add to total
-                total += a.pop(0)
-            else:
-                if total + b[0] > maxSum:
-                    break
+    # use pointer so we reduce time complexity from popping
+    a_pointer = 0
+    curr_a = a[a_pointer]
+    while total + curr_a <= maxSum:
+        # add to total, increment count and pointer
+        total += curr_a
+        max_count += 1
 
-                total += b.pop(0)
-
-            count += 1
-
-        elif a:
-            
-            total += a.pop(0)
-            count += 1
-        elif b:
-            total += b.pop(0)
-            count += 1
-
-        if not (a and b):
+        if a_pointer + 1 >= len(a):
             break
+
+        a_pointer += 1
+        curr_a = a[a_pointer]
     
-    return count
+    # count now is the max number we can achieve if we only consider stack a
+    # we can start taking from the top of stack b to see if it results in a higher count
+    # if total < maxSum, we can continue taking, count increases
+    # if total > maxSum, pop off the last added value from stack a and add in the new value from stack b, count stays the same
+
+    b_pointer = 0
+    curr_count = max_count
+    while b_pointer < len(b) and a_pointer >= 0:
+        curr_b = b[b_pointer]
+        b_pointer += 1
+
+        total += curr_b
+        curr_count += 1
+
+        while total > maxSum and a_pointer > 0:
+            a_pointer -= 1
+            total -= a[a_pointer]
+            curr_count -= 1
+
+        max_count = max(max_count, curr_count)
+
+
+    return max_count
+
