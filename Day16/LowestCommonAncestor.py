@@ -1,12 +1,9 @@
-class Node:
-    def __init__(self, info): 
-        self.info = info  
-        self.left = None  
-        self.right = None 
-        self.level = None 
+import sys, os
 
-    def __str__(self):
-        return str(self.info) 
+CURRENT_DIR = os.path.dirname(__file__)
+sys.path.append(os.path.join(os.path.dirname(CURRENT_DIR), 'Data_Structures'))
+
+from Node import Node
 
 class BinarySearchTree:
     def __init__(self): 
