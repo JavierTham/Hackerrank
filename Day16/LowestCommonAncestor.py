@@ -4,32 +4,7 @@ CURRENT_DIR = os.path.dirname(__file__)
 sys.path.append(os.path.join(os.path.dirname(CURRENT_DIR), 'Data_Structures'))
 
 from Node import Node
-
-class BinarySearchTree:
-    def __init__(self): 
-        self.root = None
-
-    def create(self, val):  
-        if self.root == None:
-            self.root = Node(val)
-        else:
-            current = self.root
-         
-            while True:
-                if val < current.info:
-                    if current.left:
-                        current = current.left
-                    else:
-                        current.left = Node(val)
-                        break
-                elif val > current.info:
-                    if current.right:
-                        current = current.right
-                    else:
-                        current.right = Node(val)
-                        break
-                else:
-                    break
+from BST import BST
 
 # lowest common ancestor is the node where
 # both values are in the left and right sub-tree each
@@ -50,7 +25,7 @@ def lca(root, v1, v2):
         else:
             return lca(root.right, v1, v2)
 
-tree = BinarySearchTree()
+tree = BST()
 t = int(input())
 
 arr = list(map(int, input().split()))
